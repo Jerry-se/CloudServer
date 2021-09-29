@@ -55,6 +55,7 @@ main(int argc, char **argv)
 	}
 
 	sin.sin_family = AF_INET;
+	sin.sin_addr.s_addr = htonl(INADDR_ANY);
 	sin.sin_port = htons(PORT);
 
 	listener = evconnlistener_new_bind(base, listener_cb, (void *)base,

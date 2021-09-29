@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <netinet/in.h>
 #include <string.h>
+#include <arpa/inet.h>
 
 #define BUFFER_SIZE 1024
 static const int PORT = 9995;
@@ -19,8 +20,10 @@ int main(int argc, char* argv[]) {
     struct sockaddr_in addr;
     memset(&addr, 0, sizeof(addr));
     addr.sin_family = AF_INET;
+    addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    // addr.sin_addr.s_addr = inet_addr("127.0.0.1");
+    // inet_pton(AF_INET, "127.0.0.1", &addr.sin_addr);
     addr.sin_port = htons(PORT);
-    //addr.sin_addr.s_addr = inet_addr("127.0.0.1");
     if (connect(sfd, (struct sockaddr*)&addr, sizeof(addr)) < 0) {
         printf("connect failed!\n");
         goto error;
