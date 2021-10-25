@@ -15,7 +15,6 @@ int main(void)
   int i;
 
   while(FCGI_Accept() >= 0){
-
     printf("Content-type: text/html\r\n\r\n" \
             "<html><head><title>Test</title></head>" \
             "<body>%s %d " \
