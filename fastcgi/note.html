@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Note of Jerry</title>
+    <style>
+      .input {
+        width: 500px;
+        height: 100px;
+      }
+    </style>
+    <script type="text/JavaScript" src="./FileSaver.js" charset="utf-8"></script>
+  </head>
+<body>
+  <script>
+    function saveText() {
+      var strText = document.getElementById("finput").value;
+      var file = new File([strText], "手机号.txt", { type: "text/plain;charset=utf-8" });
+      saveAs(file);
+    }
+  </script>
+
+<form action="./cgipost" method="post">
+  <!-- <p>Input</p> -->
+  <!-- Input: <input type="text" name="fname" value="" class="input"/><br /> -->
+  <textarea name="finput" id="finput" rows="10" cols="100" autofocus></textarea>
+  <p></p>
+  <input type="submit" value="Submit form"/><!-- onclick="saveText()" -->
+  <!-- <button type="button">Submit form</button> -->
+</form>
+
+<!-- <p>请单击重置按钮，可以清空表单。</p> -->
+<p>请单击确认按钮，输入会保存到服务器上。</p>
+
+</body>
+</html>
