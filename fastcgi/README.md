@@ -79,3 +79,5 @@ systemctl restart firewalld.service
 2. [WikiStart - spawn-fcgi - lighty labs](https://redmine.lighttpd.net/projects/spawn-fcgi/wiki)
 3. [Nginx&C++实现简单的fastcgi程序](https://blog.csdn.net/liukang325/article/details/78782994)
 4. [Nginx FastCGI 开发（C/C++）](https://my.oschina.net/u/989096/blog/887078https://my.oschina.net/u/989096/blog/887078)
+5. [FastCGI 协议分析](https://blog.csdn.net/hepangda/article/details/81560515)
+6. [FastCGI协议详解及代码实现](https://blog.csdn.net/zhang197093/article/details/78914509)

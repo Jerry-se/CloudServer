@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
     <title>Note of Jerry</title>
     <style>
       .input {
@@ -8,20 +9,13 @@
         height: 100px;
       }
     </style>
-    <script type="text/JavaScript" src="./FileSaver.js" charset="utf-8"></script>
   </head>
 <body>
-  <script>
-    function saveText() {
-      var strText = document.getElementById("finput").value;
-      var file = new File([strText], "手机号.txt", { type: "text/plain;charset=utf-8" });
-      saveAs(file);
-    }
-  </script>
 
-<form action="./cgipost" method="post">
+<form action="http://192.168.2.231:8081/main.cgi" method="post">
   <!-- <p>Input</p> -->
-  <!-- Input: <input type="text" name="fname" value="" class="input"/><br /> -->
+  Input: <input type="text" name="fname" value="" /><br />
+  <p></p>
   <textarea name="finput" id="finput" rows="10" cols="100" autofocus></textarea>
   <p></p>
   <input type="submit" value="Submit form"/><!-- onclick="saveText()" -->
