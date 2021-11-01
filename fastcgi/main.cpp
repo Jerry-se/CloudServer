@@ -8,6 +8,8 @@
 #include <unistd.h>
 #endif
 
+#define MAX_CONTENT_LENGTH 4096
+
 using namespace std;
 
 int main(void)
@@ -15,6 +17,15 @@ int main(void)
   int i;
 
   while(FCGI_Accept() >= 0){
+    char inputBuffer[MAX_CONTENT_LENGTH] = { 0 };
+    int len = atoi(getenv("CONTENT_LENGTH"));
+    if (len > MAX_CONTENT_LENGTH) len = MAX_CONTENT_LENGTH;
+    int iRead = 0, x;
+    while (iRead < len) {
+      if (EOF == (x = FCGI_fgetc(stdin)))
+        break;
+      inputBuffer[iRead++] = x;
+    }
     printf("Content-type: text/html\r\n\r\n" \
             "<html><head><title>Test</title></head>" \
             "<body>%s %d " \
@@ -34,6 +45,7 @@ int main(void)
             "<br> SERVER_ADDR: %s " \
             "<br> SERVER_PORT: %s " \
             "<br> SERVER_NAME: %s " \
+            "<br> POST_CONTENT: %s " \
             "</body></html>",
             "Hello World", i++,
             getenv("SERVER_SOFTWARE"),
@@ -51,7 +63,8 @@ int main(void)
             getenv("REMOTE_PORT"),
             getenv("SERVER_ADDR"),
             getenv("SERVER_PORT"),
-            getenv("SERVER_NAME"));
+            getenv("SERVER_NAME"),
+            inputBuffer);
   }
 
   return 0;
